@@ -1,0 +1,28 @@
+{
+    "listaProdutos": [
+        {
+            "id": 1,
+            "title": "Pão de queijo",
+            "Description": "",
+            "Price": 4.50
+        },
+        {
+            "id": 2,
+            "title": "Baguete",
+            "Description": "",
+            "Price": 14.50
+        },
+        {
+            "id": 3,
+            "title": "Croissant",
+            "Description": "",
+            "Price": 6.90
+        },
+        {
+            "id": 4,
+            "title": "Pão sírio",
+            "Description": "",
+            "Price": 25.80
+        }
+    ]
+}
