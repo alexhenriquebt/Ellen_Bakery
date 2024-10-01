@@ -1,8 +1,9 @@
-import { Text, View, StyleSheet, Image, Pressable } from "react-native";
+import { Text, View, StyleSheet, Image, Pressable, ScrollView } from "react-native";
 import { Link } from "expo-router";
 
 export default function Index() {
   return (
+    <ScrollView horizontal={false} vertical={true}>
     <View style={styles.body}>
       <Text style={styles.title}>Ellen Bakery</Text>
       <Text style={styles.subtitle}>
@@ -14,19 +15,21 @@ export default function Index() {
           flex: 1,
           justifyContent: "center",
           alignItems: "center",
+          marginTop: 50
         }}
       >
         <Image
           style={{
-            width: 400,
-            height: 400,
-            borderRadius: 200,
+            width: 250,
+            height: 250,
+            borderRadius: 150
           }}
           source={require("../assets/images/inicial_img.jpg")}
         />
         <View
           style={{
             marginTop: 20,
+            marginBottom: 20
           }}
         >
           <Link href="/products" asChild>
@@ -37,12 +40,12 @@ export default function Index() {
         </View>
       </View>
     </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   body: {
-    flex: 1,
     alignItems: "center"
   },
   title: {

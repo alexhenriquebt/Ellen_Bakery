@@ -1,28 +1,65 @@
 {
-    "listaProdutos": [
+    "listaProdutosPaos": [
         {
             "id": 1,
             "title": "Pão de queijo",
-            "Description": "",
-            "Price": 4.50
+            "description": "Descubra o sabor irresistível do nosso Pão de Queijo, uma verdadeira iguaria mineira! Com uma crosta dourada e crocante, e um interior macio e puxento, cada mordida é uma explosão de sabor. Feito com ingredientes frescos e queijo de qualidade, esse clássico é perfeito para qualquer hora do dia. Ideal para acompanhar um café quentinho ou simplesmente para satisfazer aquela vontade de um lanche gostoso. Peça agora e sinta o calor e o carinho da tradição mineira na sua casa.",
+            "price": 4.50,
+            "image": "../assets/images/paos/menu_paoQueijo.jpg"
         },
         {
             "id": 2,
             "title": "Baguete",
-            "Description": "",
-            "Price": 14.50
+            "description": "Experimente a nossa autêntica Baguette, um clássico da padaria francesa que vai conquistar seu paladar! Com uma crosta crocante e dourada por fora e um miolo leve e aerado por dentro, essa baguette é perfeita para acompanhar refeições ou saborear com patês e queijos. Ideal para criar sanduíches deliciosos ou para um brunch especial. Fresquinha e irresistível, a nossa Baguette traz um toque de sofisticação e sabor para o seu dia. Peça agora e traga um pedacinho da França para a sua mesa.",
+            "price": 14.50,
+            "image": "../assets/images/paos/menu_baguete.jpg"
         },
         {
             "id": 3,
             "title": "Croissant",
-            "Description": "",
-            "Price": 6.90
+            "description": "Delicie-se com o nosso irresistível Croissant, um verdadeiro símbolo da pâtisserie francesa! Com uma textura leve e folhada, cada camada derrete na boca, trazendo um sabor amanteigado que é puro prazer. Perfeito para o café da manhã ou um lanche à tarde, nosso croissant é versátil e pode ser saboreado puro ou recheado com chocolate, queijo ou geleia. Fresquinho e feito com carinho, ele é a escolha ideal para quem busca um momento de indulgência. Peça agora e transforme seu dia em uma experiência gourmet.",
+            "price": 6.90,
+            "image": "../assets/images/paos/menu_croissant.jpg"
         },
         {
             "id": 4,
             "title": "Pão sírio",
-            "Description": "",
-            "Price": 25.80
+            "description": "Descubra o sabor autêntico do nosso Pão Sírio, perfeito para acompanhar suas refeições ou criar deliciosos wraps! Com uma textura macia e levemente tostada, esse pão versátil é ideal para saborear com pastas, saladas ou grelhados. Leve e saboroso, ele traz um toque mediterrâneo para o seu dia a dia. Fresquinho e feito com ingredientes selecionados, nosso Pão Sírio é a escolha ideal para quem busca praticidade e sabor. Peça agora e eleve suas refeições a um novo patamar.",
+            "price": 25.80,
+            "image": "../assets/images/paos/menu_paoSirio.jpg"
         }
+    ],
+    
+
+    "listaProdutosSorvetes": [
+        {
+            "id": 1,
+            "title": "Sorvete de chocolate",
+            "description": "Refresque-se com o nosso irresistível Sorvete de Chocolate, uma verdadeira indulgência para os amantes de chocolate! Feito com ingredientes de alta qualidade, cada colherada traz uma explosão de sabor intenso e cremoso que derrete na boca. Ideal para qualquer hora do dia, seja como sobremesa ou um treat especial, esse sorvete é perfeito para compartilhar ou saborear sozinho. Delicie-se com a textura suave e o rico sabor que só o nosso Sorvete de Chocolate pode oferecer. Peça agora e transforme seu dia em um momento de puro prazer.",
+            "price": 7.40,
+            "image": "../assets/images/sorvetes/menu_sorvete_chocolate.jpg"
+        },
+        {
+            "id": 2,
+            "title": "Sorvete de chocolate com maracujá",
+            "description": "Experimente a combinação perfeita do nosso Sorvete de Chocolate com Maracujá, uma explosão de sabores que vai encantar seu paladar! A cremosidade do chocolate se encontra com a acidez refrescante do maracujá, criando uma mistura irresistível que é ao mesmo tempo rica e leve. Ideal para quem busca uma sobremesa inovadora e refrescante, esse sorvete é perfeito para qualquer ocasião. Delicie-se com cada colherada e surpreenda-se com essa combinação única. Peça agora e leve um toque de sabor tropical à sua experiência.",
+            "price": 20.00,
+            "image": "../assets/images/sorvetes/menu_sorvete_chocolate_maracuja.jpg"
+        },
+        {
+            "id": 3,
+            "title": "Sorvete de morango",
+            "description": "Saboreie o nosso irresistível Sorvete de Morango, uma verdadeira explosão de frescor e sabor! Feito com morangos selecionados e ingredientes de alta qualidade, cada colherada traz a doçura natural da fruta em uma textura cremosa e suave. Perfeito para os dias quentes ou como uma deliciosa sobremesa, esse sorvete é ideal para quem busca um momento refrescante e leve. Delicie-se com o sabor autêntico do morango e transforme seu dia em uma experiência frutal e indulgente. Peça agora e sinta a alegria de um verdadeiro sorvete de morango.",
+            "price": 5.00,
+            "image": "../assets/images/sorvetes/menu_sorvete_morango.jpg"
+        },
+        {
+            "id": 4,
+            "title": "Sorvete de baunilha",
+            "description": "Desperte seus sentidos com o nosso clássico Sorvete de Baunilha, uma verdadeira delícia cremosa e suave! Feito com baunilha natural de alta qualidade, cada colherada oferece um sabor rico e aveludado que derrete na boca. Perfeito para acompanhar sobremesas, como tortas e brownies, ou para saborear puro, esse sorvete é a escolha ideal para quem aprecia o sabor sofisticado da baunilha. Deixe-se envolver pela elegância desse clássico e transforme seu dia em um momento especial. Peça agora e experimente a simplicidade deliciosa do nosso Sorvete de Baunilha.",
+            "price": 6.80,
+            "image": "../assets/images/sorvetes/menu_sorvete_baunilha.jpg"
+        }
+        
     ]
 }
