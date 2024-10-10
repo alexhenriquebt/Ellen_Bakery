@@ -6,10 +6,26 @@ import {
   Image,
   ScrollView,
   Button,
-  TouchableOpacity
+  TouchableOpacity,
+  Dimensions
 } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import lista from "../products.json";
+
+const screenWidth = Dimensions.get('window').width;
+
+const getImage = (imageName) => {
+  switch (imageName) {
+    case 'menu_sorvete_chocolate':
+      return require('../../assets/images/sorvetes/menu_sorvete_chocolate.jpg');
+    case 'menu_sorvete_chocolate_maracuja':
+      return require('../../assets/images/sorvetes/menu_sorvete_chocolate_maracuja.jpg');
+    case 'menu_sorvete_morango':
+      return require('../../assets/images/sorvetes/menu_sorvete_morango.jpg');
+    case 'menu_sorvete_baunilha':
+      return require('../../assets/images/sorvetes/menu_sorvete_baunilha.jpg');
+  }
+};
 
 export default function paoSingle() {
   const { id } = useLocalSearchParams();
@@ -19,7 +35,7 @@ export default function paoSingle() {
   return (
     <ScrollView style={styles.container}>
       <View style={{ flex: 1, justifyContent: "center" }}>
-        <Image style={styles.image} source={{ uri: data.image }} />
+        <Image style={[styles.image, { width: screenWidth }]} source={getImage(data.image)} />
         <Text style={styles.textProduct}> {data.title} </Text>
         <View
           style={{
@@ -35,12 +51,12 @@ export default function paoSingle() {
 
             <Button
             title="-"
-            color="#fd8d32"
+            color="black"
               />
             <Text>0</Text>
             <Button
               title="+"
-              color="#fd8d32"
+              color="black"
             />
           </View>
         </View>
@@ -66,8 +82,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   image: {
-    height: 200,
-    borderRadius: 8,
+    height: 200
   },
   textProduct: {
     marginTop: 30,
@@ -93,16 +108,16 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     fontSize: 25,
     fontWeight: "bold",
-    fontFamily: "Helvetica"
   },
   fatherOrder: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-end",
-    marginTop: 120,
+    marginTop: 80,
+    marginBottom: 50,
     padding: 10,
-    borderRadius: 8,
+    borderRadius: 8
   },
   button: {
     backgroundColor: '#fd8d32',

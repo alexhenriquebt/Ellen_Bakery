@@ -33,8 +33,8 @@ export default function Index() {
           }}
         >
           <Link href="/products" asChild>
-            <Pressable>
-              <button style={styles.button}>Começar</button>
+            <Pressable style={styles.buttonContainer}>
+              <Text style={styles.button}>Começar</Text>
             </Pressable>
           </Link>
         </View>
@@ -52,21 +52,24 @@ const styles = StyleSheet.create({
     margin: 20,
     fontSize: 50,
     fontStyle: "italic",
-    fontFamily: "Georgia"
   },
   subtitle: {
     margin: 10,
     fontSize: 30,
     fontStyle: "italic",
-    fontFamily: "Georgia",
     color: "gray"
   },
   button: {
-    backgroundColor: "#fd8d32",
-    color: "#fff",
+    color: "white"
+  },
+  
+  buttonContainer: {
+    backgroundColor: "black",
     width: 200,
     height: 50,
     borderRadius: 50,
-    borderWidth: 0
-  },
+    borderWidth: 0,
+    justifyContent: "center",
+    alignItems: "center"
+  }
 });

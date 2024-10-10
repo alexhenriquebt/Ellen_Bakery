@@ -2,152 +2,195 @@ import { View, Text, ScrollView, Image, StyleSheet, TouchableOpacity } from "rea
 import { Link } from "expo-router";
 import lista from "./products.json";
 import IconFeather from 'react-native-vector-icons/Feather';
+import React, { useRef } from 'react';
+
+const getImage = (imageName) => {
+  switch (imageName) {
+    case 'menu_paoQueijo':
+      return require('../assets/images/paos/menu_paoQueijo.jpg');
+    case 'menu_baguete':
+      return require('../assets/images/paos/menu_baguete.jpg');
+    case 'menu_croissant':
+      return require('../assets/images/paos/menu_croissant.jpg');
+    case 'menu_paoSirio':
+      return require('../assets/images/paos/menu_paoSirio.jpg');
+    case 'menu_sorvete_chocolate':
+      return require('../assets/images/sorvetes/menu_sorvete_chocolate.jpg');
+    case 'menu_sorvete_chocolate_maracuja':
+      return require('../assets/images/sorvetes/menu_sorvete_chocolate_maracuja.jpg');
+    case 'menu_sorvete_morango':
+      return require('../assets/images/sorvetes/menu_sorvete_morango.jpg');
+    case 'menu_sorvete_baunilha':
+      return require('../assets/images/sorvetes/menu_sorvete_baunilha.jpg');
+  }
+};
 
 const truncateText = (text, maxLength) => {
-  if (text.length > maxLength) {
-    return text.slice(0, maxLength) + '...';
-  }
-  return text;
+  return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
 };
 
 export default function Products() {
+  const scrollViewRef = useRef(); // Referência para o ScrollView
+
+  const categories = ['Pães', 'Sorvetes', 'Tortas', 'Salgados', 'Bebidas'];
+
+  // Função para rolar até a seção correspondente
+  const scrollToCategory = (index) => {
+    const yOffset = 80 + (index * 800); // Ajuste esse valor conforme necessário
+    scrollViewRef.current.scrollTo({ y: yOffset, animated: true });
+  };
+
   return (
-    <ScrollView style={{backgroundColor: "white"}}>
-      <View>
-        <View style={styles.header}>
-          <Text style={styles.title}>Escolha seu pedido</Text>
-          <IconFeather name="user" style={styles.title}></IconFeather>
-
-          <View>
-            {/* User icon and notifications icon */}
-          </View>
-        </View>
-
-        <Text style={styles.subtitle}>Categorias</Text>
-        <ScrollView horizontal={true} vertical={false}>
-          <View style={styles.categoria}>
-          <TouchableOpacity style={styles.itemCategoria} href="#1">Pães</TouchableOpacity>
-            <TouchableOpacity style={styles.itemCategoria} href="#2">Sorvetes</TouchableOpacity>
-            <TouchableOpacity style={styles.itemCategoria}>Tortas</TouchableOpacity>
-            <TouchableOpacity style={styles.itemCategoria}>Salgados</TouchableOpacity>
-            <TouchableOpacity style={styles.itemCategoria}>Bebidas</TouchableOpacity>
-          </View>
-        </ScrollView>
-
-        <Text style={styles.subtitle} id="1">Pães</Text>
-        <ScrollView horizontal={true} vertical={false}>
-          {lista.listaProdutosPaos.map((item) => (
-            <View key={item.id} style={styles.cardContainer}>
-              <Link
-                href={{
-                  pathname: "paosingle/[id]",
-                  params: { id: item.id },
-                }}
-              >
-                <View style={styles.card}>
-                  <Image source={{ uri: item.image }} style={styles.image} />
-                  <Text style={{fontSize: 20, fontWeight: "bold"}}>{item.title}</Text>
-                  <Text style={{fontSize: 15}}>{truncateText(item.description, 100)}</Text>
-                  <Text style={{fontSize: 20, fontWeight: "bold"}}>Valor:</Text>
-                  <Text style={{fontSize: 20}}>R${item.price}</Text>
-                </View>
-              </Link>
-            </View>
-          ))}
-        </ScrollView>
-
-        <Text style={styles.subtitle} id="2">Sorvetes</Text>
-        <ScrollView horizontal={true} vertical={false}>
-          {lista.listaProdutosSorvetes.map((item) => (
-            <View key={item.id} style={styles.cardContainer}>
-              <Link
-                href={{
-                  pathname: "/sorvetesingle/[id]",
-                  params: { id: item.id },
-                }}
-              >
-                <View style={styles.card}>
-                  <Image source={{ uri: item.image }} style={styles.image} />
-                  <Text style={{fontSize: 20, fontWeight: "bold"}}>{item.title}</Text>
-                  <Text style={{fontSize: 15}}>{truncateText(item.description, 100)}</Text>
-                  <Text style={{fontSize: 20, fontWeight: "bold"}}>Valor:</Text>
-                  <Text style={{fontSize: 20}}>R${item.price}</Text>
-                </View>
-              </Link>
-            </View>
-          ))}
-        </ScrollView>
+    <ScrollView ref={scrollViewRef} style={styles.container}>
+      {/* Header */}
+      <View style={styles.header}>
+        <Text style={styles.title}>Escolha seu pedido</Text>
+        <IconFeather name="user" style={styles.icon} />
       </View>
+
+      {/* Categorias */}
+      <Text style={styles.subtitle}>Categorias</Text>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <View style={styles.categoria}>
+          {categories.map((categoria, index) => (
+            <TouchableOpacity
+              key={categoria}
+              style={styles.itemCategoria}
+              onPress={() => scrollToCategory(index)}
+            >
+              <Text style={styles.categoriaText}>{categoria}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </ScrollView>
+
+      {/* Produtos: Pães */}
+      <Text style={styles.subtitle}>Pães</Text>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        {lista.listaProdutosPaos.map((item) => (
+          <View key={item.id} style={styles.cardContainer}>
+            <Link
+              href={{ pathname: "paosingle/[id]", params: { id: item.id } }}
+            >
+              <View style={styles.card}>
+                <Image source={getImage(item.image)} style={styles.image} />
+                <Text style={styles.productTitle}>{item.title}</Text>
+                <Text style={styles.productDescription}>{truncateText(item.description, 100)}</Text>
+                <Text style={styles.productPriceLabel}>Valor:</Text>
+                <Text style={styles.productPrice}>R${item.price}</Text>
+              </View>
+            </Link>
+          </View>
+        ))}
+      </ScrollView>
+
+      {/* Produtos: Sorvetes */}
+      <Text style={styles.subtitle}>Sorvetes</Text>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        {lista.listaProdutosSorvetes.map((item) => (
+          <View key={item.id} style={styles.cardContainer}>
+            <Link
+              href={{ pathname: "/sorvetesingle/[id]", params: { id: item.id } }}
+            >
+              <View style={styles.card}>
+                <Image source={getImage(item.image)} style={styles.image} />
+                <Text style={styles.productTitle}>{item.title}</Text>
+                <Text style={styles.productDescription}>{truncateText(item.description, 100)}</Text>
+                <Text style={styles.productPriceLabel}>Valor:</Text>
+                <Text style={styles.productPrice}>R${item.price}</Text>
+              </View>
+            </Link>
+          </View>
+        ))}
+      </ScrollView>
+
+      {/* Adicione as seções para Torts, Salgados e Bebidas aqui */}
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "white",
+  },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
-    flex: 1,
-    marginBottom: 40
+    marginBottom: 40,
+    paddingHorizontal: 20,
+    paddingTop: 20,
   },
   title: {
     fontSize: 30,
-    marginTop: 20,
-    marginLeft: 20,
     fontStyle: "italic",
-    fontFamily: "Georgia",
+  },
+  icon: {
+    fontSize: 30,
+    color: "#000",
   },
   subtitle: {
     fontSize: 25,
     fontStyle: "italic",
-    fontFamily: "Georgia",
     marginTop: 30,
     marginLeft: 15,
   },
   categoria: {
-    flex: 1,
     flexDirection: "row",
     marginTop: 20,
-    gap: 10,
-    marginLeft: 10,
+    paddingHorizontal: 10,
   },
   itemCategoria: {
-    alignContent: "center",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#fd8d32",
+    backgroundColor: "black",
     width: 65,
     height: 65,
+    borderRadius: 32.5,
+    marginRight: 10,
+  },
+  categoriaText: {
     color: "#fff",
-    borderColor: "#fd8d32",
-    borderRadius: 60,
-    borderWidth: 0,
     fontSize: 15,
   },
   cardContainer: {
-    flex: 1,
-    flexDirection: "row",
-    padding: 20,
+    padding: 10,
+    alignItems: "flex-end",
   },
   card: {
-    marginTop: 20,
     width: 300,
-    height: 500,
-    backgroundColor: "#fd8d32",
-    marginBottom: 20,
+    height: 400,
+    backgroundColor: "black",
     borderRadius: 20,
+    padding: 10,
+    marginBottom: 20,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 0.8 },
     shadowOpacity: 0.5,
     shadowRadius: 3,
-    fontSize: 15,
-    padding: 10,
-    color: "white"
   },
   image: {
-    flex: 1,
-    height: 80,
-    marginBottom: 10,
-    marginTop: 0,
+    width: 280,
+    height: 200,
     borderRadius: 8,
-  }
+    marginBottom: 10,
+  },
+  productTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "white",
+  },
+  productDescription: {
+    fontSize: 15,
+    color: "white",
+  },
+  productPriceLabel: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "white",
+    marginTop: 10,
+  },
+  productPrice: {
+    fontSize: 20,
+    color: "white",
+  },
 });
